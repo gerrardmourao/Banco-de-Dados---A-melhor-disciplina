@@ -1,0 +1,44 @@
+-- EX 10:
+
+DELIMITER //
+
+CREATE PROCEDURE sp_LivrosESeusAutores()
+BEGIN
+    -- Variáveis para armazenar informações do livro e do autor
+    DECLARE livro_titulo VARCHAR(255);
+    DECLARE autor_nome VARCHAR(255);
+    DECLARE autor_sobrenome VARCHAR(255);
+    
+    -- Cursor para percorrer os livros e seus autores
+    DECLARE cursor_livros CURSOR FOR
+    SELECT Livro.Titulo, Autor.Nome, Autor.Sobrenome
+    FROM Livro
+    INNER JOIN Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID
+    INNER JOIN Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID;
+
+    -- Inicializar o cursor
+    OPEN cursor_livros;
+
+    -- Resultado da consulta
+    SELECT 'Título do Livro', 'Nome do Autor', 'Sobrenome do Autor';
+
+    -- Loop para listar os livros e autores
+    livros_autor_loop: LOOP
+        FETCH cursor_livros INTO livro_titulo, autor_nome, autor_sobrenome;
+        IF livro_titulo IS NULL THEN
+            LEAVE livros_autor_loop;
+        END IF;
+        
+        -- Exibir os detalhes do livro e autor
+        SELECT livro_titulo, autor_nome, autor_sobrenome;
+    END LOOP livros_autor_loop;
+
+    -- Fechar o cursor
+    CLOSE cursor_livros;
+END;
+//
+
+DELIMITER ;
+
+-- Chamada da stored procedure sp_LivrosESeusAutores
+CALL sp_LivrosESeusAutores();
