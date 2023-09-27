@@ -1,5 +1,5 @@
 -- EX 2:
-DELIMITER //
+DELIMITER // 
 CREATE PROCEDURE sp_LivrosPorCategoria(IN categoria_nome VARCHAR(200))
 BEGIN
     SELECT Livro.Titulo
