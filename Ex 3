@@ -19,7 +19,4 @@ CALL sp_ContarLivrosPorCategoria('Ficção Científica', @total_livros);
 CALL sp_ContarLivrosPorCategoria('História', @total_livros);
 CALL sp_ContarLivrosPorCategoria('Autoajuda', @total_livros);
 
-
-
--- Assim como no ex2, eu fiz com todas as categorias
 SELECT @total_livros;
