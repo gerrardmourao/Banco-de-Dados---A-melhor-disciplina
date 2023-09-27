@@ -12,4 +12,3 @@ END;
 DELIMITER ;
 CALL sp_ListarAutores();
 
--- Eu tive que fazer uma gambiarra com o git, aí ele criou o readMe por causa disso, e também criou o primeiro commit sozinho
