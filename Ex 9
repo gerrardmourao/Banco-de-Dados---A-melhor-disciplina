@@ -1,0 +1,16 @@
+-- EX 9:
+
+-- A stored procedure sp_VerificarLivrosCategoria recebe um parâmetro chamado categoria_nome, que é o nome da categoria que queremos verificar.
+
+-- Ela usa uma variável contador para contar quantos livros estão associados a essa categoria.
+
+-- Através de uma consulta SQL, ela verifica quantos livros na tabela Livro estão relacionados com a categoria fornecida.
+
+-- Se o contador for maior que zero, a stored procedure define a variável de saída possui_livros como 'Sim', o que significa que a categoria 
+possui livros.
+
+-- Caso contrário, se o contador for igual a zero, a variável de saída possui_livros é definida como 'Não', indicando que a categoria não possui livros associados.
+
+-- A stored procedure retorna o valor da variável possui_livros.
+
+Portanto, ao chamar a stored procedure sp_VerificarLivrosCategoria e fornecer o nome de uma categoria como parâmetro, você obterá 'Sim' se houver livros associados a essa categoria e 'Não' se não houver. Isso é útil para verificar facilmente se uma categoria está vazia ou não em seu banco de dados de livros.
