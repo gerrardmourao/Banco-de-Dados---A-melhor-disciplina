@@ -1,0 +1,40 @@
+-- EX 8:
+DELIMITER //
+
+CREATE PROCEDURE sp_AutorMaisAntigo(OUT nome_autor VARCHAR(255))
+BEGIN
+    DECLARE data_nascimento_antiga DATE;
+    DECLARE nome_autor_antigo VARCHAR(255);
+    SET data_nascimento_antiga = NULL;
+    DECLARE EXIT HANDLER FOR NOT FOUND SET nome_autor_antigo = NULL;
+    
+    DECLARE cursor_autor CURSOR FOR
+    SELECT Nome, Data_Nascimento
+    FROM Autor
+    WHERE Data_Nascimento IS NOT NULL;
+
+  
+    OPEN cursor_autor;
+
+    autor_loop: LOOP
+        FETCH cursor_autor INTO nome_autor_antigo, data_nascimento_antiga;
+        IF nome_autor_antigo IS NULL THEN
+            LEAVE autor_loop;
+        END IF;
+
+
+        IF data_nascimento_antiga IS NULL OR data_nascimento_antiga > data_nascimento_antiga THEN
+            SET data_nascimento_antiga = data_nascimento_antiga;
+            SET nome_autor = nome_autor_antigo;
+        END IF;
+    END LOOP autor_loop;
+    CLOSE cursor_autor;
+END;
+//
+
+DELIMITER ;
+
+
+CALL sp_AutorMaisAntigo(@nome_autor_mais_antigo);
+SELECT @nome_autor_mais_antigo AS 'Nome do Autor Mais Antigo';
+
