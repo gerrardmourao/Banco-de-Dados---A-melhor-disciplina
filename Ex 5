@@ -1,0 +1,17 @@
+-- EX 5:
+DELIMITER //
+
+CREATE PROCEDURE sp_LivrosAteAno(IN ano_limite INT)
+BEGIN
+    -- Listar todos os livros publicados até o ano especificado
+    SELECT Titulo, Ano_Publicacao
+    FROM Livro
+    WHERE Ano_Publicacao <= ano_limite;
+END;
+//
+
+DELIMITER ;
+
+CALL sp_LivrosAteAno(1888);
+
+--eu coloquei o 1888 só de exemplo
